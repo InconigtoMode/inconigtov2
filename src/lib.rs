@@ -110,7 +110,7 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://inconigto-mode.vercel.app/">
+    <meta property="og:url" content="https://{}/">
     <meta property="og:title" content="Inconigto Mode - V2ray Account Generator">
     <meta property="og:description" content="Create V2ray accounts with VLESS, TROJAN, and SHADOWSHOCK protocols using Cloudflare Workers">
     <meta property="og:image" content="https://raw.githubusercontent.com/akulelaki696/bg/refs/heads/main/20250106_010158.jpg">
@@ -120,7 +120,7 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://inconigto-mode.vercel.app/">
+    <meta property="twitter:url" content="https://{}/">
     <meta property="twitter:title" content="Inconigto Mode - V2ray Account Generator">
     <meta property="twitter:description" content="Create V2ray accounts with VLESS, TROJAN, and SHADOWSHOCK protocols using Cloudflare Workers">
     <meta property="twitter:image" content="https://raw.githubusercontent.com/akulelaki696/bg/refs/heads/main/20250106_010158.jpg">
@@ -640,9 +640,11 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
 </body>
 </html>
         "#,
+        host,
         host
     );
 
     // Return HTML response
     Response::from_html(html)
-}                                        
+}
+
