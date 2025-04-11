@@ -597,12 +597,12 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
     
     <script>
         // Create floating particles
-        const particlesContainer = document.getElementById('particles');
+        const particlesContainer = document.getElementById("particles");
         const particleCount = 50;
         
         for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
+            const particle = document.createElement("div");
+            particle.classList.add("particle");
             
             // Random position
             const posX = Math.random() * 100;
@@ -621,7 +621,7 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
             const delay = Math.random() * 5;
             
             // Random color
-            const colors = ['#6a11cb', '#2575fc', '#a0a0ff', '#ffffff'];
+            const colors = ["#6a11cb", "#2575fc", "#a0a0ff", "#ffffff"];
             const color = colors[Math.floor(Math.random() * colors.length)];
             
             // Apply styles
@@ -647,4 +647,3 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
     // Return HTML response
     Response::from_html(html)
 }
-
