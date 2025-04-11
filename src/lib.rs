@@ -91,11 +91,10 @@ async fn tunnel(req: Request, mut cx: RouteContext<Config>) -> Result<Response> 
 }
 
 fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
-    // You can extract any context data you need here
-    // For example:
+    // Extract host from context data
     let host = cx.data.host.to_string();
     
-    // Create an HTML response string with basic structure
+    // Create an HTML response string with basic structure - using only one host parameter
     let html = format!(
         r#"
 <!DOCTYPE html>
@@ -110,7 +109,7 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://{}/">
+    <meta property="og:url" content="https://{host}/">
     <meta property="og:title" content="Inconigto Mode - V2ray Account Generator">
     <meta property="og:description" content="Create V2ray accounts with VLESS, TROJAN, and SHADOWSHOCK protocols using Cloudflare Workers">
     <meta property="og:image" content="https://raw.githubusercontent.com/akulelaki696/bg/refs/heads/main/20250106_010158.jpg">
@@ -120,7 +119,7 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://{}/">
+    <meta property="twitter:url" content="https://{host}/">
     <meta property="twitter:title" content="Inconigto Mode - V2ray Account Generator">
     <meta property="twitter:description" content="Create V2ray accounts with VLESS, TROJAN, and SHADOWSHOCK protocols using Cloudflare Workers">
     <meta property="twitter:image" content="https://raw.githubusercontent.com/akulelaki696/bg/refs/heads/main/20250106_010158.jpg">
@@ -583,7 +582,7 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
                 </a>
             </div>
             
-            <a href="https://{}" target="_blank" class="action-button">
+            <a href="https://{host}" target="_blank" class="action-button">
                 CREATE V2RAY ACCOUNT
             </a>
             
@@ -639,10 +638,13 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
     </script>
 </body>
 </html>
-        "#,
-        host,
-        host
+        "#
     );
+
+    // Return HTML response
+    Response::from_html(html)
+}
+
 
     // Return HTML response
     Response::from_html(html)
